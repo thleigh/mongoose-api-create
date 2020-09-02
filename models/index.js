@@ -7,3 +7,13 @@ mongoose.connect('mongodb://localhost/modernWarfare', {
 })
 
 const db = mongoose.connection
+
+db.once('open', () => {
+    console.log(`Connected to MongoDB at ${db.host}:${db.port}`)
+})
+
+db.on('error', (err) => {
+    console.log(`Database error:\n${err}`)
+})
+
+module.exports.Weapons = require('./weapons')
